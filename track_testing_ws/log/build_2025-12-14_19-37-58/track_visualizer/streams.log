@@ -1,0 +1,27 @@
+[2.359s] Invoking command in '/home/omar/shellsim/control/track_testing_ws/build/track_visualizer': PYTHONPATH=/home/omar/shellsim/control/track_testing_ws/build/track_visualizer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/omar/shellsim/control/track_testing_ws/install/track_visualizer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/omar/shellsim/control/track_testing_ws/build/track_visualizer/build --no-deps symlink_data
+[3.390s] running develop
+[3.930s] running egg_info
+[3.930s] creating track_visualizer.egg-info
+[3.931s] writing track_visualizer.egg-info/PKG-INFO
+[3.931s] writing dependency_links to track_visualizer.egg-info/dependency_links.txt
+[3.932s] writing entry points to track_visualizer.egg-info/entry_points.txt
+[3.932s] writing requirements to track_visualizer.egg-info/requires.txt
+[3.933s] writing top-level names to track_visualizer.egg-info/top_level.txt
+[3.933s] writing manifest file 'track_visualizer.egg-info/SOURCES.txt'
+[3.937s] reading manifest file 'track_visualizer.egg-info/SOURCES.txt'
+[3.939s] writing manifest file 'track_visualizer.egg-info/SOURCES.txt'
+[3.942s] running build_ext
+[3.943s] Creating /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/lib/python3.10/site-packages/track-visualizer.egg-link (link to .)
+[3.946s] Installing path_publisher script to /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/lib/track_visualizer
+[3.946s] Installing track_model_publisher script to /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/lib/track_visualizer
+[3.947s] 
+[3.947s] Installed /home/omar/shellsim/control/track_testing_ws/build/track_visualizer
+[3.947s] running symlink_data
+[3.948s] creating /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/ament_index
+[3.948s] creating /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/ament_index/resource_index
+[3.948s] creating /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/ament_index/resource_index/packages
+[3.949s] symbolically linking /home/omar/shellsim/control/track_testing_ws/build/track_visualizer/resource/track_visualizer -> /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/ament_index/resource_index/packages
+[3.949s] symbolically linking /home/omar/shellsim/control/track_testing_ws/build/track_visualizer/package.xml -> /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/track_visualizer
+[3.949s] creating /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/track_visualizer/launch
+[3.949s] symbolically linking /home/omar/shellsim/control/track_testing_ws/build/track_visualizer/launch/track_launch.launch.py -> /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/track_visualizer/launch
+[4.016s] Invoked command in '/home/omar/shellsim/control/track_testing_ws/build/track_visualizer' returned '0': PYTHONPATH=/home/omar/shellsim/control/track_testing_ws/build/track_visualizer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/omar/shellsim/control/track_testing_ws/install/track_visualizer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/omar/shellsim/control/track_testing_ws/build/track_visualizer/build --no-deps symlink_data

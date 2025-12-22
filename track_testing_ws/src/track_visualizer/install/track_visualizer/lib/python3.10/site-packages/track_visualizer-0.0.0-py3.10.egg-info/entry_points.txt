@@ -1,0 +1,4 @@
+[console_scripts]
+path_publisher = track_visualizer.path_publisher:main
+pid_controller = track_visualizer.pid_controller:main
+

@@ -1,0 +1,3 @@
+[console_scripts]
+path_publisher_node = track_visualizer.path_publisher_node:main
+

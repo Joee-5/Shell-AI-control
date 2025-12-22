@@ -1,0 +1,4 @@
+[console_scripts]
+path_publisher = track_visualizer.path_publisher:main
+track_model_publisher = track_visualizer.track_model_publisher:main
+

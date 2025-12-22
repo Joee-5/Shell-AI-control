@@ -1,0 +1,35 @@
+running egg_info
+creating ../build/track_visualizer/track_visualizer.egg-info
+writing ../build/track_visualizer/track_visualizer.egg-info/PKG-INFO
+writing dependency_links to ../build/track_visualizer/track_visualizer.egg-info/dependency_links.txt
+writing entry points to ../build/track_visualizer/track_visualizer.egg-info/entry_points.txt
+writing requirements to ../build/track_visualizer/track_visualizer.egg-info/requires.txt
+writing top-level names to ../build/track_visualizer/track_visualizer.egg-info/top_level.txt
+writing manifest file '../build/track_visualizer/track_visualizer.egg-info/SOURCES.txt'
+reading manifest file '../build/track_visualizer/track_visualizer.egg-info/SOURCES.txt'
+writing manifest file '../build/track_visualizer/track_visualizer.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/omar/shellsim/control/track_testing_ws/src/build/track_visualizer/build
+creating /home/omar/shellsim/control/track_testing_ws/src/build/track_visualizer/build/lib
+creating /home/omar/shellsim/control/track_testing_ws/src/build/track_visualizer/build/lib/track_visualizer
+copying track_visualizer/dae_path_publisher.py -> /home/omar/shellsim/control/track_testing_ws/src/build/track_visualizer/build/lib/track_visualizer
+copying track_visualizer/__init__.py -> /home/omar/shellsim/control/track_testing_ws/src/build/track_visualizer/build/lib/track_visualizer
+running install
+running install_lib
+creating /home/omar/shellsim/control/track_testing_ws/src/install/track_visualizer/lib/python3.10/site-packages/track_visualizer
+copying /home/omar/shellsim/control/track_testing_ws/src/build/track_visualizer/build/lib/track_visualizer/dae_path_publisher.py -> /home/omar/shellsim/control/track_testing_ws/src/install/track_visualizer/lib/python3.10/site-packages/track_visualizer
+copying /home/omar/shellsim/control/track_testing_ws/src/build/track_visualizer/build/lib/track_visualizer/__init__.py -> /home/omar/shellsim/control/track_testing_ws/src/install/track_visualizer/lib/python3.10/site-packages/track_visualizer
+byte-compiling /home/omar/shellsim/control/track_testing_ws/src/install/track_visualizer/lib/python3.10/site-packages/track_visualizer/dae_path_publisher.py to dae_path_publisher.cpython-310.pyc
+byte-compiling /home/omar/shellsim/control/track_testing_ws/src/install/track_visualizer/lib/python3.10/site-packages/track_visualizer/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /home/omar/shellsim/control/track_testing_ws/src/install/track_visualizer/share/ament_index
+creating /home/omar/shellsim/control/track_testing_ws/src/install/track_visualizer/share/ament_index/resource_index
+creating /home/omar/shellsim/control/track_testing_ws/src/install/track_visualizer/share/ament_index/resource_index/packages
+copying resource/track_visualizer -> /home/omar/shellsim/control/track_testing_ws/src/install/track_visualizer/share/ament_index/resource_index/packages
+copying package.xml -> /home/omar/shellsim/control/track_testing_ws/src/install/track_visualizer/share/track_visualizer
+running install_egg_info
+Copying ../build/track_visualizer/track_visualizer.egg-info to /home/omar/shellsim/control/track_testing_ws/src/install/track_visualizer/lib/python3.10/site-packages/track_visualizer-0.0.0-py3.10.egg-info
+running install_scripts
+Installing path_publisher_node script to /home/omar/shellsim/control/track_testing_ws/src/install/track_visualizer/lib/track_visualizer
+writing list of installed files to '/home/omar/shellsim/control/track_testing_ws/src/build/track_visualizer/install.log'

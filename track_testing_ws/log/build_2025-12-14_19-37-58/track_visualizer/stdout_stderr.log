@@ -1,0 +1,25 @@
+running develop
+running egg_info
+creating track_visualizer.egg-info
+writing track_visualizer.egg-info/PKG-INFO
+writing dependency_links to track_visualizer.egg-info/dependency_links.txt
+writing entry points to track_visualizer.egg-info/entry_points.txt
+writing requirements to track_visualizer.egg-info/requires.txt
+writing top-level names to track_visualizer.egg-info/top_level.txt
+writing manifest file 'track_visualizer.egg-info/SOURCES.txt'
+reading manifest file 'track_visualizer.egg-info/SOURCES.txt'
+writing manifest file 'track_visualizer.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/lib/python3.10/site-packages/track-visualizer.egg-link (link to .)
+Installing path_publisher script to /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/lib/track_visualizer
+Installing track_model_publisher script to /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/lib/track_visualizer
+
+Installed /home/omar/shellsim/control/track_testing_ws/build/track_visualizer
+running symlink_data
+creating /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/ament_index
+creating /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/ament_index/resource_index
+creating /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/ament_index/resource_index/packages
+symbolically linking /home/omar/shellsim/control/track_testing_ws/build/track_visualizer/resource/track_visualizer -> /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/ament_index/resource_index/packages
+symbolically linking /home/omar/shellsim/control/track_testing_ws/build/track_visualizer/package.xml -> /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/track_visualizer
+creating /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/track_visualizer/launch
+symbolically linking /home/omar/shellsim/control/track_testing_ws/build/track_visualizer/launch/track_launch.launch.py -> /home/omar/shellsim/control/track_testing_ws/install/track_visualizer/share/track_visualizer/launch
