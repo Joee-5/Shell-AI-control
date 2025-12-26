@@ -1,16 +1,11 @@
 #!/usr/bin/env python3
-
 import rclpy
 from rclpy.node import Node
-# Explicitly import necessary messages and QoS
 from nav_msgs.msg import Path
 from geometry_msgs.msg import PoseStamped
-from builtin_interfaces.msg import Time 
-from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 
 # ==============================================================================
-# 1. ACTUAL TRACK GEOMETRY POINTS (Extracted from your track.dae file)
-# Z is set to 0.5 to ensure visibility above the ground plane.
+# 1. ACTUAL TRACK GEOMETRY POINTS (Your Data)
 # ==============================================================================
 TRACK_POINTS = [
     (-4.558597, 0.061121, 0.499973), (-2.401001, 0.042202, 0.499973), (0.940216, -0.007674, 0.499973),
@@ -66,76 +61,40 @@ TRACK_POINTS = [
     (-13.265340, 0.061121, 0.499973), (-11.478250, 0.061121, 0.499973), (-9.810216, 0.061121, 0.499973),
     (-8.272733, 0.061121, 0.499973), (-6.877303, 0.061121, 0.499973), (-5.635426, 0.061121, 0.499973)
 ]
-# ==============================================================================
-# CONFIGURATION
-# ==============================================================================
-TOPIC_NAME = "/track_path"
-FRAME_ID = "map"
-Z_LIFT = 0.5 
 
-class PathPublisher(Node):
+class PathGenerator(Node):
     def __init__(self):
-        super().__init__('path_publisher')
+        super().__init__('PathGenerator')
+        self.get_logger().info('Path Generator Node Initialized')
         
-        # --- Define QoS Profile for Reliable Communication (Fixes subscription error) ---
-        qos_profile = QoSProfile(
-            reliability=ReliabilityPolicy.RELIABLE,
-            history=HistoryPolicy.KEEP_LAST,
-            depth=1
-        )
+        # NOTE: Using the standard integer 10 for QoS to match the working file
+        self.pathPub = self.create_publisher(Path, '/path', 10)
         
-        # Publisher explicitly created for nav_msgs.msg.Path with reliable QoS
-        self.publisher_ = self.create_publisher(
-            Path, 
-            TOPIC_NAME, 
-            qos_profile
-        )
+        self.path = Path()
+        self.generatePath()
         
-        timer_period = 1.0 
-        self.timer = self.create_timer(timer_period, self.timer_callback)
-        self.get_logger().info(f"Publishing path data as nav_msgs/Path on {TOPIC_NAME} (QoS: RELIABLE).")
+        # Timer set to 0.1 to match working file (snappy updates)
+        self.timer = self.create_timer(0.1, self.publishPath)
         
-    def timer_callback(self):
-        msg = Path()
+    def generatePath(self):
+        self.path.header.frame_id = "map"
+        self.path.header.stamp = self.get_clock().now().to_msg()
         
-        # Get current time
-        now = self.get_clock().now()
-        stamp = now.to_msg()
-        
-        # Set main message header (RViz checks this first)
-        msg.header.frame_id = FRAME_ID
-        msg.header.stamp = stamp
-        
-        for x, y, z in TRACK_POINTS:
+        for point in TRACK_POINTS:
             pose = PoseStamped()
-            
-            # Set PoseStamped header (Required for consistency and TF lookup)
-            pose.header.frame_id = FRAME_ID
-            pose.header.stamp = stamp
-            
-            # Position
-            pose.pose.position.x = x
-            pose.pose.position.y = y
-            pose.pose.position.z = Z_LIFT 
-            
-            # Orientation (Identity)
-            pose.pose.orientation.w = 1.0
-            
-            msg.poses.append(pose)
-            
-        self.publisher_.publish(msg)
+            pose.pose.position.x = point[0]
+            pose.pose.position.y = point[1]
+            # Use the Z from the data or default to 0.5 (Z_LIFT) if you prefer
+            pose.pose.position.z = point[2] 
+            self.path.poses.append(pose)
+        
+    def publishPath(self):
+        self.path.header.stamp = self.get_clock().now().to_msg()
+        self.pathPub.publish(self.path)
 
 def main(args=None):
     rclpy.init(args=args)
-    path_publisher = PathPublisher()
-    
-    try:
-        rclpy.spin(path_publisher)
-    except KeyboardInterrupt:
-        pass
-    finally:
-        path_publisher.destroy_node()
-        rclpy.shutdown()
-
-if __name__ == '__main__':
-    main()
+    pathGen = PathGenerator()
+    rclpy.spin(pathGen)
+    pathGen.destroy_node()
+    rclpy.shutdown()

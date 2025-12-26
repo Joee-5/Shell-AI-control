@@ -4,3 +4,6 @@ source;share/track_visualizer/hook/pythonpath.sh
 source;share/track_visualizer/hook/ament_prefix_path.ps1
 source;share/track_visualizer/hook/ament_prefix_path.dsv
 source;share/track_visualizer/hook/ament_prefix_path.sh
+source;../../build/track_visualizer/share/track_visualizer/hook/pythonpath_develop.ps1
+source;../../build/track_visualizer/share/track_visualizer/hook/pythonpath_develop.dsv
+source;../../build/track_visualizer/share/track_visualizer/hook/pythonpath_develop.sh

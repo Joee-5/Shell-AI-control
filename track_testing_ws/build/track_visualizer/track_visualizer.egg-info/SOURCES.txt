@@ -10,10 +10,13 @@ setup.py
 ../../build/track_visualizer/track_visualizer.egg-info/zip-safe
 launch/track_launch.launch.py
 resource/track_visualizer
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py
 track_visualizer/__init__.py
 track_visualizer/path_publisher.py
-track_visualizer/pid_controller.py
 track_visualizer/track_model_publisher.py
+track_visualizer.egg-info/PKG-INFO
+track_visualizer.egg-info/SOURCES.txt
+track_visualizer.egg-info/dependency_links.txt
+track_visualizer.egg-info/entry_points.txt
+track_visualizer.egg-info/requires.txt
+track_visualizer.egg-info/top_level.txt
+track_visualizer.egg-info/zip-safe

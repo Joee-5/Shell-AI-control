@@ -1,0 +1,41 @@
+ana mksl a3ml launch file 3lshan hna5od file el path mn hena bs bs lw 7bet tgrb el path 
+
+Terminal 1: Build & Run the Path Publisher
+
+This compiles your code and starts sending the path data.
+Bash
+
+# 1. Go to workspace root
+cd ~/shellsim/Shell-AI-control/track_testing_ws
+
+# 2. Build changes
+colcon build --symlink-install
+
+# 3. Source the environment
+source install/setup.bash
+
+# 4. Run the node
+ros2 run track_visualizer path_publisher
+
+Terminal 2: Fix the "Missing Map Frame"
+
+This creates a dummy frame so RViz stops showing the "Frame [map] does not exist" error.
+Bash
+
+# This links 'map' to 'world' so RViz is happy
+ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 world map
+
+Terminal 3: Open RViz
+Bash
+
+rviz2
+
+Once RViz opens:
+
+    Set Fixed Frame (top left) to: map (or world).
+
+    Click Add (bottom left).
+
+    Select Path.
+
+    Set Topic (inside the Path item) to: /path (or /track_path).
