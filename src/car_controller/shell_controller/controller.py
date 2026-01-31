@@ -19,7 +19,7 @@ class PIDController(Node):
         self.error_log = []
 
         # PID constants
-        self.kp = 40.0
+        self.kp = 1.0
         self.ki = 0.101
         self.kd = 0.0
 
