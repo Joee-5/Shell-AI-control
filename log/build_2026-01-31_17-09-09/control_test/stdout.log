@@ -1,0 +1,45 @@
+running egg_info
+creating ../../build/control_test/control_test.egg-info
+writing ../../build/control_test/control_test.egg-info/PKG-INFO
+writing dependency_links to ../../build/control_test/control_test.egg-info/dependency_links.txt
+writing entry points to ../../build/control_test/control_test.egg-info/entry_points.txt
+writing requirements to ../../build/control_test/control_test.egg-info/requires.txt
+writing top-level names to ../../build/control_test/control_test.egg-info/top_level.txt
+writing manifest file '../../build/control_test/control_test.egg-info/SOURCES.txt'
+reading manifest file '../../build/control_test/control_test.egg-info/SOURCES.txt'
+writing manifest file '../../build/control_test/control_test.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/omar/shellsim/Shell-AI-control/build/control_test/build
+creating /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib
+creating /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test
+copying control_test/pure.py -> /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test
+copying control_test/pid.py -> /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test
+copying control_test/__init__.py -> /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test
+copying control_test/path.py -> /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test
+running install
+running install_lib
+creating /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test
+copying /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test/pure.py -> /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test
+copying /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test/pid.py -> /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test
+copying /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test/__init__.py -> /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test
+copying /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test/path.py -> /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test
+byte-compiling /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test/pure.py to pure.cpython-310.pyc
+byte-compiling /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test/pid.py to pid.cpython-310.pyc
+byte-compiling /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test/path.py to path.cpython-310.pyc
+running install_data
+creating /home/omar/shellsim/Shell-AI-control/install/control_test/share/ament_index
+creating /home/omar/shellsim/Shell-AI-control/install/control_test/share/ament_index/resource_index
+creating /home/omar/shellsim/Shell-AI-control/install/control_test/share/ament_index/resource_index/packages
+copying resource/control_test -> /home/omar/shellsim/Shell-AI-control/install/control_test/share/ament_index/resource_index/packages
+copying package.xml -> /home/omar/shellsim/Shell-AI-control/install/control_test/share/control_test
+creating /home/omar/shellsim/Shell-AI-control/install/control_test/share/control_test/launch
+copying launch/control_launch.py -> /home/omar/shellsim/Shell-AI-control/install/control_test/share/control_test/launch
+running install_egg_info
+Copying ../../build/control_test/control_test.egg-info to /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test-0.0.0-py3.10.egg-info
+running install_scripts
+Installing path_node script to /home/omar/shellsim/Shell-AI-control/install/control_test/lib/control_test
+Installing pid_node script to /home/omar/shellsim/Shell-AI-control/install/control_test/lib/control_test
+Installing pure_node script to /home/omar/shellsim/Shell-AI-control/install/control_test/lib/control_test
+writing list of installed files to '/home/omar/shellsim/Shell-AI-control/build/control_test/install.log'

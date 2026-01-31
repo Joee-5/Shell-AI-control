@@ -1,0 +1,6 @@
+[console_scripts]
+odom_node = control_test.odom:main
+path_node = control_test.path:main
+pid_node = control_test.pid:main
+pure_node = control_test.pure:main
+
