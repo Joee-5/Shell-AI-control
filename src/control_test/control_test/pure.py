@@ -11,12 +11,12 @@ from nav_msgs.msg import Odometry, Path
 # ==============================================================================
 WHEELBASE = 1.8           #
 MAX_STEER_DEG = 20.0      #
-CRUISE_VELOCITY = 1.5     # Lowered speed to guarantee path tracking success
+CRUISE_VELOCITY = 3.5     # Lowered speed to guarantee path tracking success
 
 # AGGRESSIVE TUNING: Shortening these stops the "Big Circle" behavior
 K_LD = 0.7                # How much LD scales with speed
 LD_MIN = 1.0              # Minimum lookahead (Car reacts faster to nearby points)
-LD_MAX = 3.5
+LD_MAX = 3.7
 
 class PurePursuitNode(Node):
     def __init__(self):

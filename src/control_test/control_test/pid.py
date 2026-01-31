@@ -12,7 +12,7 @@ KP = 1.8
 KI = 0.025
 KD = 0.8
 DT = 0.1
-MAX_THROTTLE = 1.0
+MAX_THROTTLE = 3.0
 
 class PIDController(Node):
     def __init__(self):
