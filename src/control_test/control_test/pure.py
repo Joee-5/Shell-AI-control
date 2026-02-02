@@ -16,7 +16,8 @@ K_LD = 0.7
 LD_MIN = 1.6              
 LD_MAX = 5.8              # Added variable
 STOP_DIST = 15.0         
-GOAL_TOLERANCE = 0.1    
+GOAL_TOLERANCE = 0.1
+DECEL_RATE = 0.5    
 # ==============================================================================
 
 class SprintPurePursuitNode(Node):
@@ -24,7 +25,7 @@ class SprintPurePursuitNode(Node):
         super().__init__('pure_node')
         self.x, self.y, self.yaw, self.v = 0.0, 0.0, 0.0, 0.0
         self.waypoints, self.last_idx = [], 0
-        
+
         qos = QoSProfile(reliability=ReliabilityPolicy.RELIABLE, history=HistoryPolicy.KEEP_LAST, depth=10, durability=DurabilityPolicy.VOLATILE)
         self.steer_pub = self.create_publisher(Float32, '/steer', qos)
         self.target_vel_pub = self.create_publisher(Float32, '/target_velocity', qos)
@@ -32,7 +33,10 @@ class SprintPurePursuitNode(Node):
         self.create_subscription(Odometry, '/state', self.state_cb, qos)
         self.create_subscription(Path, '/path', self.path_cb, qos)
         self.create_timer(0.1, self.control_loop)
-        self.get_logger().info("🚀 Sprint Controller Active: Stopping at Final Point")
+
+        self.stop_signal = False
+        self.create_subscription(Float32,'/stop_signal', self.stop_cb, qos)
+        self.get_logger().info("Stopping at Final Point.")
 
     def state_cb(self, msg):
         self.x, self.y = msg.pose.pose.position.x, msg.pose.pose.position.y
@@ -42,6 +46,12 @@ class SprintPurePursuitNode(Node):
 
     def path_cb(self, msg): 
         self.waypoints = msg.poses
+
+    def stop_cb(self, msg):
+        self.stop_signal = bool(msg.data)  # True if data != 0
+        if self.stop_signal:
+            self.get_logger().info("Stop signal received!")
+
 
     def control_loop(self):
         if not self.waypoints: return
@@ -62,6 +72,9 @@ class SprintPurePursuitNode(Node):
         final_wp = self.waypoints[-1].pose.position
         dist_to_end = math.sqrt((final_wp.x - self.x)**2 + (final_wp.y - self.y)**2)
         
+        if self.stop_signal:
+            target_vel = max(self.v - DECEL_RATE * 0.1, 0.0)
+
         if dist_to_end < GOAL_TOLERANCE:
             target_vel = 0.0
         elif dist_to_end < STOP_DIST:
