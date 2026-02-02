@@ -1,6 +1,6 @@
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy, DurabilityPolicy
+from rclpy.qos import QoSProfile, ReliabilityPolicy, HistoryPolicy
 from std_msgs.msg import Float32
 from nav_msgs.msg import Odometry, Path # Added Path import
 import numpy as np
@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 # ==========================================
 # STABILIZED PARAMETERS
 # ==========================================
-KP = 6.747           
-KI = 0.877            
-KD = 0.21             
+KP = 1.9          
+KI = 0.47            
+KD = 0.01          
 control_period = 0.1 
 MAX_THROTTLE = 1.0   
 MAX_LOG_LEN = 200    
@@ -57,7 +57,7 @@ class PIDController(Node):
         self.y = msg.pose.pose.position.y
         alpha = 0.2  
         raw_v = msg.twist.twist.linear.x
-        self.current_v = alpha * raw_v + (1 - alpha) * self.current_v
+        self.current_v = alpha * raw_v + (1 - alpha) * self.current_v #filtering velocity values
 
     def target_cb(self, msg): 
         self.target_v = msg.data
