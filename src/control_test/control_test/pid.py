@@ -31,6 +31,10 @@ class PIDController(Node):
         self.velocity_errors = []
         self.final_point = None # Stores the end of the track
 
+        self.stop_signal = False
+        self.resume_delay = 12.0 #seconds to wait before accelerating
+        self.resume_timer = None
+        
         self.time_log = []
         self.target_log = []
         self.actual_log = []
@@ -48,6 +52,7 @@ class PIDController(Node):
         self.create_subscription(Float32, '/target_velocity', self.target_cb, qos)
         self.create_subscription(Path, '/path', self.path_cb, qos) # Added path sub
         self.throttle_pub = self.create_publisher(Float32, '/throttle', qos)
+        self.create_subscription(Float32, '/stop_signal', self.stop_cb, qos)
         self.create_timer(control_period, self.control_loop)
 
         threading.Thread(target=self.live_plot_thread, daemon=True).start()
@@ -67,6 +72,27 @@ class PIDController(Node):
         if len(msg.poses) > 0:
             self.final_point = msg.poses[-1].pose.position
 
+    def stop_cb(self, msg):
+        self.stop_signal = bool(msg.data > 0.5)
+        if self.stop_signal:
+            self.get_logger().info("🛑 Stop signal received! Cutting throttle.")
+            # Stop by publishing 0 throttle
+            self.throttle_pub.publish(Float32(data=0.0)) 
+            
+            # Reset integral and last error to prevent overshoot
+            self.integral_error = 0.0
+            self.last_error = 0.0
+      
+            if self.resume_timer is not None:   #start a timer to auto-resume
+                self.resume_timer.cancel()
+            self.resume_timer = threading.Timer(self.resume_delay, self.resume_after_stop)
+            self.resume_timer.start()
+
+    def resume_after_stop(self):
+        self.stop_signal = False
+        self.get_logger().info("✅ Resuming motion after stop signal.")
+
+
     def control_loop(self):
         current_time = self.get_clock().now().nanoseconds / 1e9
         dt = current_time - self.last_time
@@ -75,41 +101,65 @@ class PIDController(Node):
         if dt <= 0.0:
             return
 
-        # --- STOPPING LOGIC ---
-        if self.final_point is not None:
-            dist_to_end = math.sqrt((self.final_point.x - self.x)**2 + (self.final_point.y - self.y)**2)
-            if dist_to_end < STOP_TOLERANCE:
-                self.get_logger().info("🏁 End reached: Cutting throttle")
-                self.throttle_pub.publish(Float32(data=0.0))
-                return # Skip PID calculation
-        # ----------------------
+        throttle = 0.0
+        error = 0.0
 
-        error = self.target_v - self.current_v
-        self.velocity_errors.append(error)
-        
-        self.integral_error = np.clip(self.integral_error + (error * dt), -2.0, 2.0)
-        
-        p_term = KP * error
-        i_term = KI * self.integral_error
-        d_term = KD * (error - self.last_error) / dt
-        self.last_error = error
+        # --- STOP SIGNAL LOGIC ---
+        if self.stop_signal:
+            throttle = 0.0
+            target_v = 0.0
+        else:
+            # --- END OF PATH STOP ---
+            if self.final_point is not None:
+                dist_to_end = math.sqrt((self.final_point.x - self.x)**2 + (self.final_point.y - self.y)**2)
+                if dist_to_end < STOP_TOLERANCE:
+                    self.get_logger().info("🏁 End reached: Cutting throttle")
+                    throttle = 0.0
+                    target_v = 0.0
+                else:
+                    # --- PID CALCULATION ---
+                    target_v = self.target_v
+                    error = target_v - self.current_v
+                    self.velocity_errors.append(error)
+                    self.integral_error = np.clip(self.integral_error + (error * dt), -2.0, 2.0)
+
+                    p_term = KP * error
+                    i_term = KI * self.integral_error
+                    d_term = KD * (error - self.last_error) / dt
+                    self.last_error = error
+
+                    throttle = np.clip(p_term + i_term + d_term, -1.0, MAX_THROTTLE)
+            else:
+                # No final point yet, just use PID
+                target_v = self.target_v
+                error = target_v - self.current_v
+                self.velocity_errors.append(error)
+                self.integral_error = np.clip(self.integral_error + (error * dt), -2.0, 2.0)
+
+                p_term = KP * error
+                i_term = KI * self.integral_error
+                d_term = KD * (error - self.last_error) / dt
+                self.last_error = error
+
+                throttle = np.clip(p_term + i_term + d_term, -1.0, MAX_THROTTLE)
+
+        # Publish throttle and log data
+        self.throttle_pub.publish(Float32(data=float(throttle)))
 
         with self.lock:
             self.time_log.append(current_time)
-            self.target_log.append(self.target_v)
+            self.target_log.append(target_v)
             self.actual_log.append(self.current_v)
             self.error_log.append(error)
-            
+
             self.time_log = self.time_log[-MAX_LOG_LEN:]
             self.target_log = self.target_log[-MAX_LOG_LEN:]
             self.actual_log = self.actual_log[-MAX_LOG_LEN:]
             self.error_log = self.error_log[-MAX_LOG_LEN:]
 
-        throttle = np.clip(p_term + i_term + d_term, -1.0, MAX_THROTTLE)
-        self.throttle_pub.publish(Float32(data=float(throttle)))
-
         rmse = np.sqrt(np.mean(np.square(self.velocity_errors[-50:]))) if self.velocity_errors else 0.0
-        self.get_logger().info(f"V: {self.current_v:.2f} | RMSE: {rmse:.3f}")
+        self.get_logger().info(f"V: {self.current_v:.2f} | Target: {target_v:.2f} | RMSE: {rmse:.3f}")
+
 
     def live_plot_thread(self):
         plt.ion()
