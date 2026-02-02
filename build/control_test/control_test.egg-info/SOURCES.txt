@@ -12,6 +12,7 @@ control_test/__init__.py
 control_test/odom.py
 control_test/path.py
 control_test/pid.py
+control_test/pid_tuner.py
 control_test/pure.py
 launch/control_launch.py
 resource/control_test

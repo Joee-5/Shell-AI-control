@@ -28,6 +28,7 @@ setup(
             'pure_node = control_test.pure:main',
             'path_node = control_test.path:main',
             'odom_node = control_test.odom:main',
+            'pid_tuner = control_test.pid_tuner:main',
         ],
     },
 )

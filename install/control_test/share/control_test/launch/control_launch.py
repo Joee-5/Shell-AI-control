@@ -33,9 +33,27 @@ def generate_launch_description():
             name='odom_node'
         ),
 
+        Node(
+            package='control_test',
+            executable='pid_tuner',
+            name='pid_tuner',
+            output='screen'
+        ),
+
         # 5. Open RViz2 automatically
         ExecuteProcess(
             cmd=['rviz2'],
             output='screen'
         )
     ])
+
+
+""" 
+cd shellsim/Shell-AI-control
+colcon build --packages-select control_test
+source install/setup.bash
+ros2 launch control_test control_launch.py
+
+
+
+"""

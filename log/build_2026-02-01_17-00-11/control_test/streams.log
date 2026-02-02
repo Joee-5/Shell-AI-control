@@ -1,0 +1,32 @@
+[0.474s] Invoking command in '/home/omar/shellsim/Shell-AI-control/src/control_test': PYTHONPATH=/home/omar/shellsim/Shell-AI-control/build/control_test/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/control_test build --build-base /home/omar/shellsim/Shell-AI-control/build/control_test/build install --record /home/omar/shellsim/Shell-AI-control/build/control_test/install.log --single-version-externally-managed install_data
+[0.665s] running egg_info
+[0.666s] writing ../../build/control_test/control_test.egg-info/PKG-INFO
+[0.666s] writing dependency_links to ../../build/control_test/control_test.egg-info/dependency_links.txt
+[0.666s] writing entry points to ../../build/control_test/control_test.egg-info/entry_points.txt
+[0.666s] writing requirements to ../../build/control_test/control_test.egg-info/requires.txt
+[0.666s] writing top-level names to ../../build/control_test/control_test.egg-info/top_level.txt
+[0.668s] reading manifest file '../../build/control_test/control_test.egg-info/SOURCES.txt'
+[0.669s] writing manifest file '../../build/control_test/control_test.egg-info/SOURCES.txt'
+[0.669s] running build
+[0.669s] running build_py
+[0.670s] copying control_test/pid.py -> /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test
+[0.670s] copying control_test/pid_tuner.py -> /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test
+[0.670s] running install
+[0.671s] running install_lib
+[0.671s] copying /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test/pid.py -> /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test
+[0.671s] copying /home/omar/shellsim/Shell-AI-control/build/control_test/build/lib/control_test/pid_tuner.py -> /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test
+[0.672s] byte-compiling /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test/pid.py to pid.cpython-310.pyc
+[0.673s] byte-compiling /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test/pid_tuner.py to pid_tuner.cpython-310.pyc
+[0.674s] running install_data
+[0.674s] copying launch/control_launch.py -> /home/omar/shellsim/Shell-AI-control/install/control_test/share/control_test/launch
+[0.674s] running install_egg_info
+[0.676s] removing '/home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test-0.0.0-py3.10.egg-info' (and everything under it)
+[0.676s] Copying ../../build/control_test/control_test.egg-info to /home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages/control_test-0.0.0-py3.10.egg-info
+[0.677s] running install_scripts
+[0.692s] Installing odom_node script to /home/omar/shellsim/Shell-AI-control/install/control_test/lib/control_test
+[0.693s] Installing path_node script to /home/omar/shellsim/Shell-AI-control/install/control_test/lib/control_test
+[0.693s] Installing pid_node script to /home/omar/shellsim/Shell-AI-control/install/control_test/lib/control_test
+[0.693s] Installing pid_tuner script to /home/omar/shellsim/Shell-AI-control/install/control_test/lib/control_test
+[0.693s] Installing pure_node script to /home/omar/shellsim/Shell-AI-control/install/control_test/lib/control_test
+[0.693s] writing list of installed files to '/home/omar/shellsim/Shell-AI-control/build/control_test/install.log'
+[0.710s] Invoked command in '/home/omar/shellsim/Shell-AI-control/src/control_test' returned '0': PYTHONPATH=/home/omar/shellsim/Shell-AI-control/build/control_test/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/omar/shellsim/Shell-AI-control/install/control_test/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/control_test build --build-base /home/omar/shellsim/Shell-AI-control/build/control_test/build install --record /home/omar/shellsim/Shell-AI-control/build/control_test/install.log --single-version-externally-managed install_data

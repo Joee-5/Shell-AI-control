@@ -33,6 +33,13 @@ def generate_launch_description():
             name='odom_node'
         ),
 
+        Node(
+            package='control_test',
+            executable='pid_tuner',
+            name='pid_tuner',
+            output='screen'
+        ),
+
         # 5. Open RViz2 automatically
         ExecuteProcess(
             cmd=['rviz2'],

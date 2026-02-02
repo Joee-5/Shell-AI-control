@@ -2,5 +2,6 @@
 odom_node = control_test.odom:main
 path_node = control_test.path:main
 pid_node = control_test.pid:main
+pid_tuner = control_test.pid_tuner:main
 pure_node = control_test.pure:main
 
